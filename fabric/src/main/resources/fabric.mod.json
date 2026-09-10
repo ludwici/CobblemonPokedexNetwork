@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon-pokedex-network",
+  "version": "${version}",
+  "name": "Cobblemon Pokedex Network",
+  "description": "The mod introduces shared Pokémon discovery data, allowing players to see complete information about Pokémon scanned by others. It also adds catch info to the Pokédex, including who caught each Pokémon first and when",
+  "authors": [
+    "ludwici"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/cobblemon-pokedex-network",
+    "sources": "https://github.com/ludwici/CobblemonPokedexNetwork"
+  },
+  "license": "LGPL 3",
+  "icon": "assets/cobblemon-pokedex-network/cpn.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ludwici.cobblemonpokedexnetwork.fabric.CobblemonPokedexNetworkFabric"
+    ],
+    "client": [
+      "com.ludwici.cobblemonpokedexnetwork.fabric.CobblemonPokedexNetworkFabricClient"
+    ],
+    "modmenu": [
+      "com.ludwici.cobblemonpokedexnetwork.fabric.compat.ModMenuAPI"
+    ]
+  },
+  "mixins": [
+    "cobblemon-pokedex-network.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.3",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "architectury": ">=13.0.8",
+    "fabric-language-kotlin": "*",
+    "cobblemon": ">=1.8.0"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "cloth-config": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/cobblemon-pokedex-network"
+      }
+    }
+  }
+}

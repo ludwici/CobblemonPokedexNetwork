@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Run directories
+run/
+**/run/
+
+# Local Gradle bootstrap cache
+.gradle-wrapper/
+
+# OS
+.DS_Store
+Thumbs.db

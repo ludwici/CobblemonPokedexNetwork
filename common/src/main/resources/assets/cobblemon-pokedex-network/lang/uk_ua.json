@@ -1,0 +1,23 @@
+{
+  "cobblemon-pokedex-network.gui.habitats": "Середовище",
+  "cobblemon-pokedex-network.gui.no_data": "Відсутні дані",
+  "cobblemon-pokedex-network.gui.caught_info": "Спіймано: %s\\nО: %s",
+  "cobblemon-pokedex-network.config.title": "Cobblemon Pokedex Network",
+  "cobblemon-pokedex-network.config.client_category": "Клієнт",
+  "config.cobblemon-pokedex-network.date_format.title": "Формат дати",
+  "config.cobblemon-pokedex-network.date_format.tooltip.header": "Доступні символи формату:",
+  "config.cobblemon-pokedex-network.date_format.tooltip.yyyy": "yyyy — рік (2024)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.MM": "MM — місяць (01-12)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.dd": "dd — день місяця (01-31)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.HH": "HH — години, 24г формат (00-23)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.hh": "hh — години, 12г формат (01-12)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.mm": "mm — хвилини (00-59)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.ss": "ss — секунди (00-59)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.SSS": "SSS — мілісекунди (000-999)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.EEEE": "EEEE — день тижня (Monday)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.MMMM": "MMMM — назва місяця (January)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.a": "a — AM/PM",
+  "config.cobblemon-pokedex-network.date_format.tooltip.example": "Приклад: %s",
+  "config.cobblemon-pokedex-network.date_format.tooltip.error": "Помилка у форматі: %s",
+  "config.cobblemonpokedexnetwork.date_format": "Формат дати"
+}

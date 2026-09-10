@@ -1,0 +1,23 @@
+{
+  "cobblemon-pokedex-network.gui.habitats": "Habitats",
+  "cobblemon-pokedex-network.gui.no_data": "No data",
+  "cobblemon-pokedex-network.gui.caught_info": "Caught by: %s\\nOn: %s",
+  "cobblemon-pokedex-network.config.title": "Cobblemon Pokedex Network",
+  "cobblemon-pokedex-network.config.client_category": "Client",
+  "config.cobblemon-pokedex-network.date_format.title": "Date Format",
+  "config.cobblemon-pokedex-network.date_format.tooltip.header": "Available format symbols:",
+  "config.cobblemon-pokedex-network.date_format.tooltip.yyyy": "yyyy — year (2024)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.MM": "MM — month (01-12)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.dd": "dd — day of month (01-31)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.HH": "HH — hours, 24h format (00-23)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.hh": "hh — hours, 12h format (01-12)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.mm": "mm — minutes (00-59)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.ss": "ss — seconds (00-59)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.SSS": "SSS — milliseconds (000-999)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.EEEE": "EEEE — day of week (Monday)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.MMMM": "MMMM — month name (January)",
+  "config.cobblemon-pokedex-network.date_format.tooltip.a": "a — AM/PM",
+  "config.cobblemon-pokedex-network.date_format.tooltip.example": "Example: %s",
+  "config.cobblemon-pokedex-network.date_format.tooltip.error": "Invalid format: %s",
+  "config.cobblemonpokedexnetwork.date_format": "Date Format"
+}
