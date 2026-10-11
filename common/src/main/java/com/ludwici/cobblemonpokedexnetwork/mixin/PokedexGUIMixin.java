@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import static com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.BASE_HEIGHT;
 import static com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.BASE_WIDTH;
 import static com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_ICON_SIZE;
+import static com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.ICONS_PADDING_AROUND;
 import static com.cobblemon.mod.common.util.MiscUtilsKt.cobblemonResource;
 
 @Mixin(PokedexGUI.class)
@@ -35,8 +36,8 @@ public abstract class PokedexGUIMixin extends Screen {
 
     @Unique private int cpn$habitatsTabIndex = -1;
     @Unique private static final ResourceLocation cpn$habitatsTabIcon = cobblemonResource("textures/gui/pokedex/tab_locations.png");
-    @Unique private static final float cpn$tabSpacing = 21.0F;
-    @Unique private static final float cpn$tabRowShift = 8.0F;
+    @Unique private static final float cpn$tabSpacing = 17.0F;
+    @Unique private static final float cpn$tabRowShift = 4.5F;
 
     protected PokedexGUIMixin(Component component) {
         super(component);
@@ -66,14 +67,9 @@ public abstract class PokedexGUIMixin extends Screen {
         addRenderableWidget(habitatsButton);
     }
 
-    @ModifyConstant(method = "render", constant = @Constant(floatValue = 191.5F))
+    @ModifyConstant(method = "render", constant = @Constant(floatValue = 19.5F), remap = false, require = 1)
     private float cpn$centerTabSelectionArrow(float original) {
-        return original - cpn$tabRowShift;
-    }
-
-    @ModifyConstant(method = "render", constant = @Constant(floatValue = 22.0F))
-    private float cpn$tightenTabSelectionArrowSpacing(float original) {
-        return cpn$tabSpacing;
+        return original - cpn$tabRowShift + tabInfoIndex * (cpn$tabSpacing - (BASE_WIDTH / 2 - ICONS_PADDING_AROUND * 2.0F) / 7.0F);
     }
 
     @Inject(method = "displaytabInfoElement", at = @At("TAIL"), remap = false)

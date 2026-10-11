@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry;
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm;
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies;
 import com.cobblemon.mod.common.client.CobblemonClient;
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUI;
 import com.cobblemon.mod.common.client.gui.pokedex.ScaledButton;
 import com.cobblemon.mod.common.client.gui.pokedex.widgets.PokemonInfoWidget;
 import com.ludwici.cobblemonpokedexnetwork.ClientNetworkEntry;
@@ -30,7 +31,7 @@ public abstract class PokemonInfoWidgetMixin {
     @Unique private static final ResourceLocation cpn$infoButtonResource = cobblemonResource("textures/gui/pokedex/tab_info.png");
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void cpn$onInit(int pX, int pY, Function1<?, ?> updateForm, CallbackInfo ci) {
+    private void cpn$onInit(PokedexGUI parent, int pX, int pY, Function1<?, ?> updateForm, CallbackInfo ci) {
         cpn$infoButton = new ScaledButton(pX + 3, pY + 41, 20, 20, cpn$infoButtonResource, 0.5F, false, button -> {});
         ((ParentWidgetInvoker) this).invokeAddWidget(cpn$infoButton);
     }
