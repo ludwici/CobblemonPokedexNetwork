@@ -35,7 +35,7 @@
     "fabric-api": "*",
     "architectury": ">=13.0.8",
     "fabric-language-kotlin": "*",
-    "cobblemon": ">=1.8.2"
+    "cobblemon": ">=1.8.4"
   },
   "suggests": {
     "modmenu": "*",
