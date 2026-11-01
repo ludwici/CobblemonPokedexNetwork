@@ -62,16 +62,20 @@ public final class CobblemonPokedexNetwork {
         });
 
         CobblemonEvents.POKEMON_CAPTURED.subscribe(event -> {
-            if (pokedexStorage == null) return;
+            if (pokedexStorage == null) {
+                return;
+            }
 
             ServerPlayer player = event.getPlayer();
             Pokemon pokemon = event.getPokemon();
             ResourceLocation biome = player.level().getBiome(player.blockPosition()).unwrapKey().map(net.minecraft.resources.ResourceKey::location).orElse(null);
-            if (biome == null) return;
+            if (biome == null) {
+                return;
+            }
 
             ResourceLocation speciesId = pokemon.getSpecies().resourceIdentifier;
             pokedexStorage.addNewData(speciesId, player.getUUID(), pokemon, biome);
-            pokedexStorage.toClientSingleData(player, speciesId, pokemon.getForm());
+            pokedexStorage.toClientAllPlayers(speciesId, pokemon.getForm());
         });
     }
 

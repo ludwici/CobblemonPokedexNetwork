@@ -170,11 +170,35 @@ public final class PokedexNetworkStorage {
         }
     }
 
+    public void toClientAllPlayers(ResourceLocation speciesId, FormData formData) {
+        Map<String, NetworkEntry> forms = getInfo(speciesId);
+        if (forms == null) {
+            return;
+        }
+
+        NetworkEntry entry = forms.get(formData.getName());
+        if (entry == null) {
+            return;
+        }
+
+        PokedexSingleDataS2C payload = new PokedexSingleDataS2C(speciesId.toString(), formData.getName(), toClientEntry(entry));
+
+        for (ServerPlayer onlinePlayer : server.getPlayerList().getPlayers()) {
+            PlatformNetworking.sendToPlayer(onlinePlayer, payload);
+        }
+    }
+
     public void toClientSingleData(ServerPlayer player, ResourceLocation speciesId, FormData formData) {
         Map<String, NetworkEntry> forms = getInfo(speciesId);
-        if (forms == null) return;
+        if (forms == null) {
+            return;
+        }
+
         NetworkEntry entryData = forms.get(formData.getName());
-        if (entryData == null) return;
+        if (entryData == null) {
+            return;
+        }
+
         PlatformNetworking.sendToPlayer(player, new PokedexSingleDataS2C(speciesId.toString(), formData.getName(), toClientEntry(entryData)));
     }
 }
