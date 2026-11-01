@@ -28,6 +28,13 @@ public final class CobblemonPokedexNetwork {
 
         PlatformEvents.SERVER_STARTING.subscribe(event -> pokedexStorage = new PokedexNetworkStorage(event.getServer()));
 
+        PlatformEvents.SERVER_STOPPED.subscribe(event -> {
+            if (pokedexStorage != null) {
+                pokedexStorage.close();
+                pokedexStorage = null;
+            }
+        });
+
         PlatformEvents.SERVER_PLAYER_LOGIN.subscribe(event -> {
             if (pokedexStorage != null) {
                 pokedexStorage.toClientAllData(event.getPlayer());

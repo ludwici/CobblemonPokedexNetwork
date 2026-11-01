@@ -23,8 +23,10 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -35,6 +37,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 public final class PokedexNetworkStorage {
@@ -89,12 +92,54 @@ public final class PokedexNetworkStorage {
     }
 
     private void save(ResourceLocation speciesId, Map<String, NetworkEntry> forms) {
-        if (forms.isEmpty()) return;
+        if (forms.isEmpty()) {
+            return;
+        }
+
         Path file = filePath.resolve(toFileName(speciesId));
-        try (JsonWriter writer = new JsonWriter(Files.newBufferedWriter(file))) {
-            FORMS_ADAPTER.write(writer, forms);
-        } catch (IOException e) {
+        Path temporaryFile = null;
+        try {
+            temporaryFile = Files.createTempFile(filePath, "cpn-", ".tmp");
+            try (JsonWriter writer = new JsonWriter(Files.newBufferedWriter(temporaryFile))) {
+                FORMS_ADAPTER.write(writer, forms);
+            }
+
+            try {
+                Files.move(temporaryFile, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(temporaryFile, file, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException | RuntimeException e) {
             LOGGER.error("Failed to save {}", file, e);
+        } finally {
+            if (temporaryFile != null) {
+                try {
+                    Files.deleteIfExists(temporaryFile);
+                } catch (IOException e) {
+                    LOGGER.warn("Failed to remove temporary file {}", temporaryFile, e);
+                }
+            }
+        }
+    }
+
+    public void close() {
+        saveExecutor.shutdown();
+        boolean interrupted = false;
+        try {
+            while (true) {
+                try {
+                    if (saveExecutor.awaitTermination(30, TimeUnit.SECONDS)) {
+                        break;
+                    }
+                    LOGGER.warn("Waiting for pending Pokedex Network saves to finish");
+                } catch (InterruptedException e) {
+                    interrupted = true;
+                }
+            }
+        } finally {
+            if (interrupted) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
