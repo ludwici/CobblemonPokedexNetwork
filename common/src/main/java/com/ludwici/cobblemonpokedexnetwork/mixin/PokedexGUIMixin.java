@@ -67,7 +67,7 @@ public abstract class PokedexGUIMixin extends Screen {
         addRenderableWidget(habitatsButton);
     }
 
-    @ModifyConstant(method = "render", constant = @Constant(floatValue = 19.5F), remap = false, require = 1)
+    @ModifyConstant(method = "render", constant = @Constant(floatValue = 19.5F), require = 1)
     private float cpn$centerTabSelectionArrow(float original) {
         return original - cpn$tabRowShift + tabInfoIndex * (cpn$tabSpacing - (BASE_WIDTH / 2 - ICONS_PADDING_AROUND * 2.0F) / 7.0F);
     }
