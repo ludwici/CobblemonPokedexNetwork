@@ -27,11 +27,14 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Gradle
+      - name: Set up Gradle 8.12.1
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.12.1'
+          validate-wrappers: false
 
       - name: Build Fabric and NeoForge
-        run: bash ./gradlew --no-daemon --stacktrace clean build
+        run: gradle --no-daemon --stacktrace clean build
 
       - name: Upload Fabric JAR
         uses: actions/upload-artifact@v4
