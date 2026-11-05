@@ -34,6 +34,8 @@ dependencies {
     }
 
     modImplementation "com.cobblemon:neoforge:$rootProject.cobblemon_version"
+    implementation "org.mongodb:mongodb-driver-sync:$rootProject.mongodb_driver_version"
+    shadowBundle "org.mongodb:mongodb-driver-sync:$rootProject.mongodb_driver_version"
 }
 
 processResources {
@@ -56,6 +58,8 @@ sourceSets {
 shadowJar {
     configurations = [project.configurations.shadowBundle]
     archiveClassifier = 'dev-shadow'
+    relocate 'com.mongodb', 'com.ludwici.cobblemonpokedexnetwork.shaded.mongodb'
+    relocate 'org.bson', 'com.ludwici.cobblemonpokedexnetwork.shaded.bson'
 }
 
 remapJar {
